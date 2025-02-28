@@ -1,54 +1,113 @@
-# React + TypeScript + Vite
+# Angel Amaya - Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Portfolio Preview](https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200&h=600)
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. The site showcases my skills, projects, and provides a contact form for potential clients or employers to reach out.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Responsive Design**: Looks great on all devices from mobile to desktop
+- **Animated UI**: Smooth animations and transitions using Framer Motion
+- **Contact Form**: Direct email functionality using Node.js and Nodemailer
+- **Modern Tech Stack**: Built with React, TypeScript, and Tailwind CSS
+- **Performance Optimized**: Fast loading times and smooth scrolling
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Tech Stack
+
+### Frontend
+- React 18
+- TypeScript
+- Tailwind CSS
+- Framer Motion (animations)
+- Lucide React (icons)
+
+### Backend
+- Node.js
+- Express
+- Nodemailer (email functionality)
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/portfolio-website.git
+cd portfolio-website
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Install dependencies
+```bash
+npm install
 ```
+
+3. Start the development server
+```bash
+npm run dev
+```
+
+4. In a separate terminal, start the backend server
+```bash
+npm run server
+```
+
+## Project Structure
+
+```
+portfolio-website/
+├── public/              # Static files
+├── src/                 # Source files
+│   ├── components/      # React components
+│   │   ├── Hero.tsx     # Hero section
+│   │   ├── Projects.tsx # Projects section
+│   │   ├── Skills.tsx   # Skills section
+│   │   └── Contact.tsx  # Contact form
+│   ├── App.tsx          # Main App component
+│   └── main.tsx         # Entry point
+├── server.js            # Backend server for email functionality
+├── tailwind.config.js   # Tailwind CSS configuration
+└── package.json         # Project dependencies
+```
+
+## Deployment
+
+### Frontend
+The frontend can be deployed to platforms like Netlify, Vercel, or GitHub Pages.
+
+```bash
+npm run build
+```
+
+### Backend
+The backend needs to be deployed to a Node.js hosting service like Heroku, Render, or Railway.
+
+## Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```
+PORT=3001
+```
+
+For production, you'll need to set up environment variables for your email service:
+
+```
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+```
+
+## Contact
+
+Angel Amaya - [angelnataren16@gmail.com](mailto:angelnataren16@gmail.com)
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
