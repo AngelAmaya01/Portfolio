@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Mail,
@@ -10,13 +10,25 @@ import {
 } from "lucide-react";
 import emailjs from "emailjs-com";
 
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+interface Status {
+  submitted: boolean;
+  success: boolean;
+  message: string;
+}
+
 export const Contact = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState({
+  const [status, setStatus] = useState<Status>({
     submitted: false,
     success: false,
     message: "",
@@ -29,7 +41,9 @@ export const Contact = () => {
     // The initialization happens when sending the email
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -37,7 +51,7 @@ export const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -46,13 +60,17 @@ export const Contact = () => {
       const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
       const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
       const userId = process.env.REACT_APP_EMAILJS_USER_ID;
+
+      if (!serviceId || !templateId || !userId) {
+        throw new Error("EmailJS environment variables are not defined");
+      }
+
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
         to_name: "Angel Amaya",
         message: formData.message,
         reply_to: formData.email,
-        // The SMTP settings are configured in the EmailJS dashboard, not here
       };
 
       await emailjs.send(serviceId, templateId, templateParams, userId);

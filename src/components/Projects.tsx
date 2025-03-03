@@ -1,41 +1,46 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ExternalLink, Github } from "lucide-react";
+// import { ExternalLink, Github } from "lucide-react";
+import { ReactElement } from "react";
 
-const projects = [
+// Definición de tipos para los proyectos
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+}
+
+// Lista de proyectos
+const projects: Project[] = [
   {
-    title: "E-commerce Platform",
+    title: "AquaSystemApp",
     description:
-      "A full-stack e-commerce application with real-time inventory management and secure payment processing.",
+      "Building...",
     image:
       "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80",
-    github: "https://github.com",
-    live: "https://example.com",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+    tags: ["React-native", "Node.js", "MySQL", "Firebase"],
   },
   {
-    title: "Social Media Dashboard",
+    title: "AquaSystemWeb",
     description:
-      "Analytics dashboard for social media management with real-time data visualization and reporting.",
+      "Building...",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
-    github: "https://github.com",
-    live: "https://example.com",
-    tags: ["React", "TypeScript", "D3.js", "Firebase"],
+    tags: ["React", "TypeScript", "Mysql", "Firebase"],
   },
   {
-    title: "AI Task Manager",
+    title: "HealingWeb",
     description:
-      "Smart task management system with AI-powered prioritization and scheduling features.",
+      "Soon..",
     image:
       "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&q=80",
-    github: "https://github.com",
-    live: "https://example.com",
-    tags: ["Next.js", "OpenAI", "PostgreSQL"],
+    tags: ["Next.js", "React", "PostgreSQL"],
   },
 ];
 
-export const Projects = () => {
+// Componente principal de proyectos
+export const Projects = (): ReactElement => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
@@ -61,7 +66,14 @@ export const Projects = () => {
   );
 };
 
-const ProjectCard = ({ project, index }) => {
+// Props para el componente ProjectCard
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+}
+
+// Componente ProjectCard
+const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -83,26 +95,9 @@ const ProjectCard = ({ project, index }) => {
           className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-          <motion.a
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors backdrop-blur-sm"
-          >
-            <Github className="w-6 h-6 text-white" />
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors backdrop-blur-sm"
-          >
-            <ExternalLink className="w-6 h-6 text-white" />
-          </motion.a>
+          <div className="p-3 bg-white/10 rounded-full backdrop-blur-sm">
+            <span className="text-white text-sm">Próximamente...</span>
+          </div>
         </div>
       </div>
       <div className="p-8">
