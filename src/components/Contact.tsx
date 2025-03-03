@@ -43,10 +43,9 @@ export const Contact = () => {
 
     try {
       // Your EmailJS configuration
-      const serviceId = "service_8u62ns6"; // Replace with your actual service ID from EmailJS
-      const templateId = "template_f4bjvvc"; // Replace with your actual template ID from EmailJS
-      const userId = "ui8XB45gaQRn9VdFt"; // Replace with your actual user ID from EmailJS
-
+      const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+      const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+      const userId = process.env.REACT_APP_EMAILJS_USER_ID;
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
