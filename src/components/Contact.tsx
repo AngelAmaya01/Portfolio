@@ -56,10 +56,9 @@ export const Contact = () => {
     setLoading(true);
 
     try {
-      // Your EmailJS configuration
-      const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-      const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-      const userId = process.env.REACT_APP_EMAILJS_USER_ID;
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const userId = import.meta.env.VITE_EMAILJS_USER_ID;
 
       if (!serviceId || !templateId || !userId) {
         throw new Error("EmailJS environment variables are not defined");
@@ -73,7 +72,15 @@ export const Contact = () => {
         reply_to: formData.email,
       };
 
-      await emailjs.send(serviceId, templateId, templateParams, userId);
+      console.log("Sending email with params:", templateParams);
+
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        userId
+      );
+      console.log("Email sent successfully:", response);
 
       setStatus({
         submitted: true,
@@ -81,7 +88,6 @@ export const Contact = () => {
         message: "Your message has been sent successfully!",
       });
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
