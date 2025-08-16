@@ -1,8 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
-  SiCsharp,
-  SiJava,
   SiJavascript,
   SiTypescript,
   SiNodedotjs,
@@ -12,7 +10,6 @@ import {
   SiTailwindcss,
   SiBootstrap,
   SiReact,
-  SiMicrosoftsqlserver,
   SiMysql,
   SiMongodb,
   SiPostgresql,
@@ -23,22 +20,25 @@ import {
   SiFirebase,
   SiCloudflare,
 } from "react-icons/si";
-import { 
-  FaServer, 
-  FaLayerGroup, 
-  FaCloud, 
+import {
+  FaServer,
+  FaLayerGroup,
+  FaCloud,
   FaMobile,
   FaDesktop,
   FaCode
 } from "react-icons/fa";
+import { IoScanCircleSharp } from "react-icons/io5";
+import { DiMsqlServer } from "react-icons/di";
+import { TbBrandCSharp } from "react-icons/tb";
 
 const skills = [
   {
     category: "Backend",
     icon: <FaServer className="w-8 h-8" />,
     items: [
-      { name: "C# - .NET", icon: <SiCsharp className="w-6 h-6" />, color: "text-purple-400" },
-      { name: "Java", icon: <SiJava className="w-6 h-6" />, color: "text-red-400" },
+      { name: "C# - .NET", icon: <TbBrandCSharp  className="w-6 h-6" />, color: "text-purple-400" },
+      { name: "Java", icon: <SiJavascript className="w-6 h-6" />, color: "text-red-400" },
       { name: "JavaScript/TypeScript - Node.js", icon: <SiNodedotjs className="w-6 h-6" />, color: "text-green-400" },
       { name: "Python", icon: <SiPython className="w-6 h-6" />, color: "text-yellow-400" },
     ],
@@ -67,7 +67,7 @@ const skills = [
     category: "Bases de datos",
     icon: <FaLayerGroup className="w-8 h-8" />,
     items: [
-      { name: "SQL Server", icon: <SiMicrosoftsqlserver className="w-6 h-6" />, color: "text-red-400" },
+      { name: "SQL Server", icon: <DiMsqlServer className="w-6 h-6" />, color: "text-red-400" },
       { name: "MySQL", icon: <SiMysql className="w-6 h-6" />, color: "text-blue-400" },
       { name: "MongoDB", icon: <SiMongodb className="w-6 h-6" />, color: "text-green-400" },
       { name: "PostgreSQL", icon: <SiPostgresql className="w-6 h-6" />, color: "text-blue-400" },
@@ -94,6 +94,7 @@ const skills = [
       { name: "Cloudflare", icon: <SiCloudflare className="w-6 h-6" />, color: "text-orange-400" },
       { name: "Vercel", icon: <SiVercel className="w-6 h-6" />, color: "text-white" },
       { name: "Firebase", icon: <SiFirebase className="w-6 h-6" />, color: "text-yellow-400" },
+      { name: "Cloudflare", icon: <SiCloudflare className="w-6 h-6" />, color: "text-orange-400" },
     ],
   },
 ];

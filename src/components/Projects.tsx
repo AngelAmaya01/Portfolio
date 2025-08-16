@@ -21,7 +21,7 @@ const projects: Project[] = [
       "Sistema web completo para la gestión de servicios de agua potable. Incluye administración de usuarios, facturación, reportes y control de pagos. Desarrollado con React, TypeScript y MySQL.",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
-    tags: ["React", "TypeScript", "MySQL", "Firebase"],
+    tags: ["React", "JavaScript", "Tailwind CSS"],
     link: "https://admin.emasar.org/",
     status: "live",
   },
@@ -31,7 +31,7 @@ const projects: Project[] = [
       "Aplicación móvil complementaria del sistema web, permitiendo a los usuarios consultar su estado de cuenta, realizar pagos y recibir notificaciones. Desarrollada con React Native.",
     image:
       "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80",
-    tags: ["React Native", "Node.js", "MySQL", "Firebase"],
+    tags: ["React Native", "TypeScript", "Tailwind CSS", "Firebase"],
     status: "completed",
   },
 ];
