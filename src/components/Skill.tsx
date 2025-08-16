@@ -117,7 +117,7 @@ export const Skills = () => {
           transition={{ duration: 0.8 }}
           className="text-5xl font-bold text-center text-white mb-16"
         >
-          Skills & Expertise
+          Habilidades y Experiencia
         </motion.h2>
         <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {skills.map((category, categoryIndex) => (

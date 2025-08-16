@@ -51,7 +51,7 @@ export const Projects = (): ReactElement => {
           transition={{ duration: 0.8 }}
           className="text-5xl font-bold text-center text-white mb-16"
         >
-          Featured Projects
+          Proyectos Destacados
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {projects.map((project, index) => (

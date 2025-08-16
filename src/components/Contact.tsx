@@ -115,7 +115,7 @@ export const Contact = () => {
           transition={{ duration: 0.8 }}
           className="text-5xl font-bold text-center text-white mb-16"
         >
-          Contact Me
+          Contáctame
         </motion.h2>
         <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
           <motion.div

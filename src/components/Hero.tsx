@@ -45,33 +45,33 @@ export const Hero = () => {
             className="absolute -inset-1 blur-lg opacity-30"
           />
           <h1 className="text'7xl font-bold mb-4 relative">
-            Hello, I`m{" "}
+            Hola, soy{" "}
             <span className="bg-gradient-to-r from-blue-500 to-blue-300 text-transparent bg-clip-text">
               Angel Amaya
             </span>
           </h1>
-          <p className="text-2xl mb-6 text-blue-200">Full Stack Developer</p>
+          <p className="text-2xl mb-6 text-blue-200">Desarrollador Full Stack</p>
 
           <div className="flex flex-wrap justify-center gap-6 mb-8 text-gray-300">
             <div className="flex items-center gap-2">
               <Code2 className="w-5 h-5 text-blue-400" />
-              <span>Web Development</span>
+              <span>Desarrollo Web</span>
             </div>
             <div className="flex items-center gap-2">
               <Globe className="w-5 h-5 text-blue-400" />
-              <span>API Integration</span>
+              <span>Integración de APIs</span>
             </div>
             <div className="flex items-center gap-2">
               <Cpu className="w-5 h-5 text-blue-400" />
-              <span>Backend Development</span>
+              <span>Desarrollo Backend</span>
             </div>
           </div>
 
           <p className="text-lg mb-12 text-gray-300 max-w-2xl mx-auto">
-            Passionate full-stack developer from Honduras with expertise in
-            building modern web applications. Specialized in creating responsive
-            and user-friendly interfaces with React and developing robust
-            backend solutions.
+            Desarrollador full-stack apasionado de Honduras con experiencia en
+            la construcción de aplicaciones web modernas. Especializado en crear
+            interfaces responsivas y amigables con React y desarrollar soluciones
+            backend robustas.
           </p>
 
           <div className="flex justify-center gap-6 mb-12">
