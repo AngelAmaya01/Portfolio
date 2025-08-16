@@ -4,16 +4,16 @@ import { Calendar, MapPin, GraduationCap, Award } from 'lucide-react';
 
 const experiences = [
   {
-    title: 'Desarrollador Full Stack',
+    title: 'Web Developer',
     company: 'EMASAR',
-    period: '2023 - Presente',
+    period: '2024 - 2025',
     description: 'Desarrollo y mantenimiento del sistema web AquaSystemWeb para la gestión de servicios de agua potable, incluyendo administración de usuarios, facturación y reportes.',
     technologies: ['React', 'JavaScript', 'Tailwind CSS', 'MySQL']
   },
   {
-    title: 'Desarrollador de Aplicaciones Móviles',
-    company: 'Freelance',
-    period: '2023 - Presente',
+    title: 'Mobile App Developer',
+    company: 'EMASAR',
+    period: '2023 - 2025',
     description: 'Desarrollo de AquaSystemApp, aplicación móvil complementaria que permite a los usuarios consultar su estado de cuenta y realizar pagos.',
     technologies: ['React Native', 'TypeScript', 'Firebase']
   }
@@ -21,17 +21,17 @@ const experiences = [
 
 const certifications = [
   {
-    name: 'React Developer',
-    issuer: 'Meta',
-    date: '2023',
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=100&h=100'
-  },
-  {
-    name: 'JavaScript Algorithms',
-    issuer: 'freeCodeCamp',
-    date: '2022',
+    name: 'Python',
+    issuer: 'SoloLearn',
+    date: '2024',
     image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&q=80&w=100&h=100'
-  }
+  },
+  // {
+  //   name: 'JavaScript Algorithms',
+  //   issuer: 'freeCodeCamp',
+  //   date: '2022',
+  //   image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&q=80&w=100&h=100'
+  // }
 ];
 
 export const About = () => {
@@ -72,7 +72,7 @@ export const About = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Calendar className="w-5 h-5 text-blue-400" />
-                  <span className="text-gray-300">2+ años de experiencia</span>
+                  <span className="text-gray-300">1+ años de experiencia</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <GraduationCap className="w-5 h-5 text-blue-400" />
@@ -81,7 +81,7 @@ export const About = () => {
               </div>
 
               <p className="text-gray-400 mt-6 leading-relaxed">
-                Soy un desarrollador full-stack apasionado por crear soluciones tecnológicas innovadoras. 
+                Soy un desarrollador apasionado por crear soluciones tecnológicas innovadoras. 
                 Me especializo en el desarrollo de aplicaciones web y móviles, con un enfoque en la 
                 experiencia del usuario y la eficiencia del código. Mi objetivo es transformar ideas 
                 complejas en aplicaciones funcionales y atractivas.

@@ -35,44 +35,14 @@ export const Navigation = () => {
   };
 
   const downloadCV = () => {
-    // Crear un CV temporal en formato de texto
-    const cvContent = `
-ANGEL AMAYA - FULL STACK DEVELOPER
+  const a = document.createElement("a");
+  a.href = "/CV - Angel Amaya.pdf"; 
+  a.download = "Angel_Amaya_CV.pdf"; 
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
 
-Contacto:
-Email: angelnataren16@gmail.com
-Teléfono: +504 98288917
-Ubicación: Santa Rosa de Copán, Honduras
-
-Habilidades Técnicas:
-Backend: C# .NET, Java, JavaScript/TypeScript Node.js, Python
-Frontend: HTML, CSS, JavaScript, TypeScript, Tailwind CSS, Bootstrap
-Frameworks: React, React Native
-Bases de datos: SQL Server, MySQL, MongoDB, PostgreSQL
-DevOps: Git, GitHub, Docker, Cloudflare, Vercel, Firebase
-
-Proyectos Destacados:
-1. AquaSystemWeb - Sistema web para gestión de servicios de agua potable
-2. AquaSystemApp - Aplicación móvil complementaria
-
-Arquitecturas:
-- Monolítica
-- Cliente-Servidor
-- Arquitectura en Capas
-- Serverless
-- SPA / PWA
-    `;
-
-    const blob = new Blob([cvContent], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'Angel_Amaya_CV.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
 
   return (
     <>
@@ -86,11 +56,10 @@ Arquitecturas:
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
             ? 'bg-gray-900/95 dark:bg-gray-900/95 backdrop-blur-lg border-b border-gray-700/50'
             : 'bg-transparent'
-        }`}
+          }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
@@ -115,7 +84,7 @@ Arquitecturas:
                   {item.name}
                 </motion.button>
               ))}
-              
+
               {/* Theme Toggle */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
@@ -148,7 +117,7 @@ Arquitecturas:
               >
                 {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </motion.button>
-              
+
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}

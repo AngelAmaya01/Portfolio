@@ -31,6 +31,7 @@ import {
 import { IoScanCircleSharp } from "react-icons/io5";
 import { DiMsqlServer } from "react-icons/di";
 import { TbBrandCSharp } from "react-icons/tb";
+import { CiDatabase } from "react-icons/ci";
 
 const skills = [
   {
@@ -65,7 +66,7 @@ const skills = [
   },
   {
     category: "Bases de datos",
-    icon: <FaLayerGroup className="w-8 h-8" />,
+    icon: <CiDatabase  className="w-8 h-8" />,
     items: [
       { name: "SQL Server", icon: <DiMsqlServer className="w-6 h-6" />, color: "text-red-400" },
       { name: "MySQL", icon: <SiMysql className="w-6 h-6" />, color: "text-blue-400" },
