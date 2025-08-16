@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-// import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Smartphone } from "lucide-react";
 import { ReactElement } from "react";
 
 // Definición de tipos para los proyectos
@@ -9,33 +9,30 @@ interface Project {
   description: string;
   image: string;
   tags: string[];
+  link?: string;
+  status: "live" | "development" | "completed";
 }
 
 // Lista de proyectos
 const projects: Project[] = [
   {
-    title: "AquaSystemApp",
-    description:
-      "Building...",
-    image:
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80",
-    tags: ["React-native", "Node.js", "MySQL", "Firebase"],
-  },
-  {
     title: "AquaSystemWeb",
     description:
-      "Building...",
+      "Sistema web completo para la gestión de servicios de agua potable. Incluye administración de usuarios, facturación, reportes y control de pagos. Desarrollado con React, TypeScript y MySQL.",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
-    tags: ["React", "TypeScript", "Mysql", "Firebase"],
+    tags: ["React", "TypeScript", "MySQL", "Firebase"],
+    link: "https://admin.emasar.org/",
+    status: "live",
   },
   {
-    title: "HealingWeb",
+    title: "AquaSystemApp",
     description:
-      "Soon..",
+      "Aplicación móvil complementaria del sistema web, permitiendo a los usuarios consultar su estado de cuenta, realizar pagos y recibir notificaciones. Desarrollada con React Native.",
     image:
-      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&q=80",
-    tags: ["Next.js", "React", "PostgreSQL"],
+      "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80",
+    tags: ["React Native", "Node.js", "MySQL", "Firebase"],
+    status: "completed",
   },
 ];
 
@@ -56,7 +53,7 @@ export const Projects = (): ReactElement => {
         >
           Featured Projects
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}
@@ -79,6 +76,31 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
     threshold: 0.2,
   });
 
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case "live":
+        return (
+          <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm border border-green-500/30">
+            🟢 En vivo
+          </span>
+        );
+      case "completed":
+        return (
+          <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm border border-blue-500/30">
+            ✅ Completado
+          </span>
+        );
+      case "development":
+        return (
+          <span className="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm border border-yellow-500/30">
+            🚧 En desarrollo
+          </span>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <motion.div
       ref={ref}
@@ -95,17 +117,34 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
           className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-          <div className="p-3 bg-white/10 rounded-full backdrop-blur-sm">
-            <span className="text-white text-sm">Próximamente...</span>
-          </div>
+          {project.link && (
+            <motion.a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-3 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors"
+            >
+              <ExternalLink className="w-6 h-6 text-white" />
+            </motion.a>
+          )}
+          {project.status === "completed" && !project.link && (
+            <div className="p-3 bg-white/10 rounded-full backdrop-blur-sm">
+              <Smartphone className="w-6 h-6 text-white" />
+            </div>
+          )}
+        </div>
+        <div className="absolute top-4 right-4">
+          {getStatusBadge(project.status)}
         </div>
       </div>
       <div className="p-8">
         <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
           {project.title}
         </h3>
-        <p className="text-gray-400 mb-6 line-clamp-2">{project.description}</p>
-        <div className="flex flex-wrap gap-2">
+        <p className="text-gray-400 mb-6 leading-relaxed">{project.description}</p>
+        <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, tagIndex) => (
             <span
               key={tagIndex}
@@ -115,6 +154,19 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
             </span>
           ))}
         </div>
+        {project.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium"
+          >
+            Ver proyecto <ExternalLink className="w-4 h-4" />
+          </a>
+        )}
+        {project.status === "completed" && !project.link && (
+          <p className="text-gray-500 italic">App móvil - Próximamente en Play Store</p>
+        )}
       </div>
     </motion.div>
   );
