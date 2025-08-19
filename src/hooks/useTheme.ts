@@ -1,21 +1,26 @@
 import { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 
 export const useTheme = () => {
   const [isDark, setIsDark] = useState(() => {
-    // Verificar preferencia del sistema
+    // Por defecto siempre oscuro para este portfolio
     if (typeof window !== 'undefined') {
-      const saved = Cookies.get('theme');
+      const saved = localStorage.getItem('theme');
       if (saved) return saved === 'dark';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return true; // Siempre empezar en modo oscuro
     }
     return true;
   });
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      Cookies.set('theme', isDark ? 'dark' : 'light', { expires: 365 });
-      document.documentElement.classList.toggle('dark', isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        document.body.style.backgroundColor = '#111827'; // gray-900
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.body.style.backgroundColor = '#ffffff'; // white
+      }
     }
   }, [isDark]);
 

@@ -47,6 +47,10 @@ export const ParticleBackground = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Check if dark mode is active
+      const isDark = document.documentElement.classList.contains('dark');
+      const particleColor = isDark ? '59, 130, 246' : '37, 99, 235'; // blue-500 for dark, blue-600 for light
+
       particlesRef.current.forEach((particle) => {
         // Update position
         particle.x += particle.vx;
@@ -61,7 +65,7 @@ export const ParticleBackground = () => {
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`;
+        ctx.fillStyle = `rgba(${particleColor}, ${particle.opacity})`;
         ctx.fill();
       });
 
@@ -76,7 +80,7 @@ export const ParticleBackground = () => {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 * (1 - distance / 100)})`;
+            ctx.strokeStyle = `rgba(${particleColor}, ${0.1 * (1 - distance / 100)})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }

@@ -8,12 +8,14 @@ import {
   Linkedin,
   Mail,
 } from "lucide-react";
+import { useLanguage } from "./LanguageToggle";
 
 export const Hero = () => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 150]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const { t } = useLanguage();
 
   return (
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -44,34 +46,31 @@ export const Hero = () => {
             }}
             className="absolute -inset-1 blur-lg opacity-30"
           />
-          <h1 className="text'7xl font-bold mb-4 relative">
-            Hola, soy{" "}
+          <h1 className="text-6xl md:text-7xl font-bold mb-4 relative">
+            {t('hello')}{" "}
             <span className="bg-gradient-to-r from-blue-500 to-blue-300 text-transparent bg-clip-text">
               Angel Amaya
             </span>
           </h1>
-          <p className="text-2xl mb-6 text-blue-200">Desarrollador Full Stack</p>
+          <p className="text-2xl mb-6 text-blue-200">{t('fullStackDev')}</p>
 
           <div className="flex flex-wrap justify-center gap-6 mb-8 text-gray-300">
             <div className="flex items-center gap-2">
               <Code2 className="w-5 h-5 text-blue-400" />
-              <span>Desarrollo Web</span>
+              <span>{t('webDev')}</span>
             </div>
             <div className="flex items-center gap-2">
               <Globe className="w-5 h-5 text-blue-400" />
-              <span>Integración de APIs</span>
+              <span>{t('apiIntegration')}</span>
             </div>
             <div className="flex items-center gap-2">
               <Cpu className="w-5 h-5 text-blue-400" />
-              <span>Desarrollo Backend</span>
+              <span>{t('backendDev')}</span>
             </div>
           </div>
 
           <p className="text-lg mb-12 text-gray-300 max-w-2xl mx-auto">
-            Desarrollador full-stack apasionado de Honduras con experiencia en
-            la construcción de aplicaciones web modernas. Especializado en crear
-            interfaces responsivas y amigables con React y desarrollar soluciones
-            backend robustas.
+            {t('heroDescription')}
           </p>
 
           <div className="flex justify-center gap-6 mb-12">

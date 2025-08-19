@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ExternalLink, Smartphone } from "lucide-react";
 import { ReactElement } from "react";
+import { useLanguage } from "./LanguageToggle";
 
 // Definición de tipos para los proyectos
 interface Project {
@@ -40,18 +41,19 @@ const projects: Project[] = [
 export const Projects = (): ReactElement => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const { t } = useLanguage();
 
   return (
-    <motion.section style={{ y }} className="py-20 bg-gray-900 relative">
+    <motion.section style={{ y }} className="py-20 bg-white dark:bg-gray-900 relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
       <div className="container mx-auto px-4 relative">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl font-bold text-center text-white mb-16"
+          className="text-5xl font-bold text-center text-gray-900 dark:text-white mb-16"
         >
-          Proyectos Destacados
+          {t('featuredProjects')}
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {projects.map((project, index) => (
@@ -108,7 +110,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
       whileHover={{ y: -10 }}
-      className="bg-gray-800/80 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500/30 transition-all duration-300 shadow-lg hover:shadow-blue-500/10 group"
+      className="bg-white dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-500/30 transition-all duration-300 shadow-lg hover:shadow-blue-500/10 group"
     >
       <div className="relative overflow-hidden">
         <img
@@ -140,15 +142,15 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
         </div>
       </div>
       <div className="p-8">
-        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-500 transition-colors">
           {project.title}
         </h3>
-        <p className="text-gray-400 mb-6 leading-relaxed">{project.description}</p>
+        <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, tagIndex) => (
             <span
               key={tagIndex}
-              className="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-sm border border-blue-500/20 hover:bg-blue-500/20 transition-colors"
+              className="px-3 py-1 bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full text-sm border border-blue-200 dark:border-blue-500/20 hover:bg-blue-200 dark:hover:bg-blue-500/20 transition-colors"
             >
               {tag}
             </span>
@@ -159,7 +161,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium"
+            className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
           >
             Ver proyecto <ExternalLink className="w-4 h-4" />
           </a>

@@ -9,6 +9,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import emailjs from "emailjs-com";
+import { useLanguage } from "./LanguageToggle";
 
 interface FormData {
   name: string;
@@ -34,6 +35,7 @@ export const Contact = () => {
     message: "",
   });
   const [loading, setLoading] = useState(false);
+  const { t } = useLanguage();
 
   // Initialize EmailJS
   useEffect(() => {
@@ -106,16 +108,16 @@ export const Contact = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-900 relative overflow-hidden">
+    <section className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
       <div className="container mx-auto px-4 relative">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl font-bold text-center text-white mb-16"
+          className="text-5xl font-bold text-center text-gray-900 dark:text-white mb-16"
         >
-          Contáctame
+          {t('contactMe')}
         </motion.h2>
         <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
           <motion.div
@@ -125,14 +127,14 @@ export const Contact = () => {
             className="space-y-8"
           >
             <div className="flex items-center space-x-4 group">
-              <div className="p-4 bg-blue-500/10 rounded-xl group-hover:bg-blue-500/20 transition-colors duration-300 border border-blue-500/20">
-                <Mail className="w-6 h-6 text-blue-400" />
+              <div className="p-4 bg-blue-100 dark:bg-blue-500/10 rounded-xl group-hover:bg-blue-200 dark:group-hover:bg-blue-500/20 transition-colors duration-300 border border-blue-200 dark:border-blue-500/20">
+                <Mail className="w-6 h-6 text-blue-500" />
               </div>
               <div>
-                <h3 className="text-white font-medium mb-1">Email</h3>
+                <h3 className="text-gray-900 dark:text-white font-medium mb-1">Email</h3>
                 <a
                   href="mailto:angelnataren16@gmail.com"
-                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors"
                 >
                   angelnataren16@gmail.com
                 </a>
@@ -140,14 +142,14 @@ export const Contact = () => {
             </div>
 
             <div className="flex items-center space-x-4 group">
-              <div className="p-4 bg-blue-500/10 rounded-xl group-hover:bg-blue-500/20 transition-colors duration-300 border border-blue-500/20">
-                <Phone className="w-6 h-6 text-blue-400" />
+              <div className="p-4 bg-blue-100 dark:bg-blue-500/10 rounded-xl group-hover:bg-blue-200 dark:group-hover:bg-blue-500/20 transition-colors duration-300 border border-blue-200 dark:border-blue-500/20">
+                <Phone className="w-6 h-6 text-blue-500" />
               </div>
               <div>
-                <h3 className="text-white font-medium mb-1">Phone</h3>
+                <h3 className="text-gray-900 dark:text-white font-medium mb-1">Phone</h3>
                 <a
                   href="tel:+50498288917"
-                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors"
                 >
                   +504 98288917
                 </a>
@@ -155,12 +157,12 @@ export const Contact = () => {
             </div>
 
             <div className="flex items-center space-x-4 group">
-              <div className="p-4 bg-blue-500/10 rounded-xl group-hover:bg-blue-500/20 transition-colors duration-300 border border-blue-500/20">
-                <MapPin className="w-6 h-6 text-blue-400" />
+              <div className="p-4 bg-blue-100 dark:bg-blue-500/10 rounded-xl group-hover:bg-blue-200 dark:group-hover:bg-blue-500/20 transition-colors duration-300 border border-blue-200 dark:border-blue-500/20">
+                <MapPin className="w-6 h-6 text-blue-500" />
               </div>
               <div>
-                <h3 className="text-white font-medium mb-1">Location</h3>
-                <p className="text-gray-400">Santa Rosa de Copán, Honduras</p>
+                <h3 className="text-gray-900 dark:text-white font-medium mb-1">Location</h3>
+                <p className="text-gray-600 dark:text-gray-400">Santa Rosa de Copán, Honduras</p>
               </div>
             </div>
           </motion.div>
@@ -178,31 +180,31 @@ export const Contact = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 className={`p-6 rounded-xl ${
                   status.success
-                    ? "bg-green-500/20 border border-green-500/30"
-                    : "bg-red-500/20 border border-red-500/30"
+                    ? "bg-green-100 dark:bg-green-500/20 border border-green-200 dark:border-green-500/30"
+                    : "bg-red-100 dark:bg-red-500/20 border border-red-200 dark:border-red-500/30"
                 } backdrop-blur-sm`}
               >
                 <div className="flex items-center space-x-3 mb-3">
                   {status.success ? (
-                    <CheckCircle className="w-6 h-6 text-green-400" />
+                    <CheckCircle className="w-6 h-6 text-green-500" />
                   ) : (
-                    <AlertCircle className="w-6 h-6 text-red-400" />
+                    <AlertCircle className="w-6 h-6 text-red-500" />
                   )}
                   <h3
                     className={`font-medium text-xl ${
-                      status.success ? "text-green-400" : "text-red-400"
+                      status.success ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
                     }`}
                   >
                     {status.success ? "Success!" : "Error!"}
                   </h3>
                 </div>
-                <p className="text-white mb-4">{status.message}</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">{status.message}</p>
                 <button
                   type="button"
                   onClick={() =>
                     setStatus({ submitted: false, success: false, message: "" })
                   }
-                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+                  className="px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white rounded-lg transition-colors"
                 >
                   Send another message
                 </button>
@@ -217,7 +219,7 @@ export const Contact = () => {
                     onChange={handleChange}
                     placeholder="Your Name"
                     required
-                    className="w-full px-4 py-3 bg-gray-800/50 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-blue-500/10 focus:border-blue-500/30 transition-all backdrop-blur-sm"
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800/50 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-gray-200 dark:border-blue-500/10 focus:border-blue-500/30 transition-all backdrop-blur-sm"
                   />
                 </div>
                 <div>
@@ -228,7 +230,7 @@ export const Contact = () => {
                     onChange={handleChange}
                     placeholder="Your Email"
                     required
-                    className="w-full px-4 py-3 bg-gray-800/50 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-blue-500/10 focus:border-blue-500/30 transition-all backdrop-blur-sm"
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800/50 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-gray-200 dark:border-blue-500/10 focus:border-blue-500/30 transition-all backdrop-blur-sm"
                   />
                 </div>
                 <div>
@@ -239,7 +241,7 @@ export const Contact = () => {
                     onChange={handleChange}
                     placeholder="Your Message"
                     required
-                    className="w-full px-4 py-3 bg-gray-800/50 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-blue-500/10 focus:border-blue-500/30 transition-all backdrop-blur-sm resize-none"
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800/50 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-gray-200 dark:border-blue-500/10 focus:border-blue-500/30 transition-all backdrop-blur-sm resize-none"
                   />
                 </div>
                 <motion.button

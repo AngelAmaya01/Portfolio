@@ -28,10 +28,10 @@ import {
   FaDesktop,
   FaCode
 } from "react-icons/fa";
-import { IoScanCircleSharp } from "react-icons/io5";
 import { DiMsqlServer } from "react-icons/di";
 import { TbBrandCSharp } from "react-icons/tb";
 import { CiDatabase } from "react-icons/ci";
+import { useLanguage } from "./LanguageToggle";
 
 const skills = [
   {
@@ -90,12 +90,11 @@ const skills = [
     icon: <FaCloud className="w-8 h-8" />,
     items: [
       { name: "Git", icon: <SiGit className="w-6 h-6" />, color: "text-orange-400" },
-      { name: "GitHub", icon: <SiGithub className="w-6 h-6" />, color: "text-white" },
+      { name: "GitHub", icon: <SiGithub className="w-6 h-6" />, color: "text-gray-900 dark:text-white" },
       { name: "Docker", icon: <SiDocker className="w-6 h-6" />, color: "text-blue-400" },
       { name: "Cloudflare", icon: <SiCloudflare className="w-6 h-6" />, color: "text-orange-400" },
-      { name: "Vercel", icon: <SiVercel className="w-6 h-6" />, color: "text-white" },
+      { name: "Vercel", icon: <SiVercel className="w-6 h-6" />, color: "text-gray-900 dark:text-white" },
       { name: "Firebase", icon: <SiFirebase className="w-6 h-6" />, color: "text-yellow-400" },
-      { name: "Cloudflare", icon: <SiCloudflare className="w-6 h-6" />, color: "text-orange-400" },
     ],
   },
 ];
@@ -107,18 +106,19 @@ export const Skills = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+  const { t } = useLanguage();
 
   return (
-    <motion.section style={{ scale }} className="py-20 bg-gray-900 relative">
+    <motion.section style={{ scale }} className="py-20 bg-gray-100 dark:bg-gray-900 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
       <div className="container mx-auto px-4 relative">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl font-bold text-center text-white mb-16"
+          className="text-5xl font-bold text-center text-gray-900 dark:text-white mb-16"
         >
-          Habilidades y Experiencia
+          {t('skillsAndExperience')}
         </motion.h2>
         <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {skills.map((category, categoryIndex) => (
@@ -127,7 +127,7 @@ export const Skills = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              className="bg-gray-800/80 backdrop-blur-lg rounded-2xl p-6 border border-gray-700 hover:border-blue-500/30 transition-all duration-300 shadow-lg hover:shadow-blue-500/10"
+              className="bg-white dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-blue-500/30 transition-all duration-300 shadow-lg hover:shadow-blue-500/10"
             >
               <motion.div
                 initial={{ scale: 0 }}
@@ -137,7 +137,7 @@ export const Skills = () => {
               >
                 {category.icon}
               </motion.div>
-              <h3 className="text-xl font-bold text-white mb-6 text-center">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">
                 {category.category}
               </h3>
               <div className="grid grid-cols-1 gap-4">
@@ -152,12 +152,12 @@ export const Skills = () => {
                       duration: 0.5,
                       delay: categoryIndex * 0.1 + index * 0.05,
                     }}
-                    className="flex items-center gap-3 p-3 bg-gray-700/30 rounded-lg hover:bg-gray-700/50 transition-all duration-300 group"
+                    className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700/30 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-all duration-300 group"
                   >
                     <div className={`${skill.color} group-hover:scale-110 transition-transform duration-300`}>
                       {skill.icon}
                     </div>
-                    <span className="text-white font-medium text-sm group-hover:text-blue-300 transition-colors">
+                    <span className="text-gray-900 dark:text-white font-medium text-sm group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
                       {skill.name}
                     </span>
                   </motion.div>
