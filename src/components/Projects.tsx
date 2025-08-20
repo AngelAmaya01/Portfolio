@@ -7,7 +7,7 @@ import { useLanguage } from "./LanguageToggle";
 // Definición de tipos para los proyectos
 interface Project {
   title: string;
-  description: string;
+  descriptionKey: string;
   image: string;
   tags: string[];
   link?: string;
@@ -18,8 +18,7 @@ interface Project {
 const projects: Project[] = [
   {
     title: "AquaSystemWeb",
-    description:
-      "Sistema web completo para la gestión de servicios de agua potable. Incluye administración de usuarios, facturación, reportes y control de pagos. Desarrollado con React, TypeScript y MySQL.",
+    descriptionKey: "aquaSystemWebDesc",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
     tags: ["React", "JavaScript", "Tailwind CSS"],
@@ -28,8 +27,7 @@ const projects: Project[] = [
   },
   {
     title: "AquaSystemApp",
-    description:
-      "Aplicación móvil complementaria del sistema web, permitiendo a los usuarios consultar su estado de cuenta, realizar pagos y recibir notificaciones. Desarrollada con React Native.",
+    descriptionKey: "aquaSystemAppDesc",
     image:
       "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80",
     tags: ["React Native", "TypeScript", "Tailwind CSS", "Firebase"],
@@ -77,25 +75,26 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
     triggerOnce: true,
     threshold: 0.2,
   });
+  const { t } = useLanguage();
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "live":
         return (
           <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm border border-green-500/30">
-            🟢 En vivo
+            {t('statusLive')}
           </span>
         );
       case "completed":
         return (
           <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm border border-blue-500/30">
-            ✅ Completado
+            {t('statusCompleted')}
           </span>
         );
       case "development":
         return (
           <span className="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm border border-yellow-500/30">
-            🚧 En desarrollo
+            {t('statusDevelopment')}
           </span>
         );
       default:
@@ -145,7 +144,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-500 transition-colors">
           {project.title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">{project.description}</p>
+        <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">{t(project.descriptionKey)}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, tagIndex) => (
             <span
@@ -163,11 +162,11 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
           >
-            Ver proyecto <ExternalLink className="w-4 h-4" />
+            {t('viewProject')} <ExternalLink className="w-4 h-4" />
           </a>
         )}
         {project.status === "completed" && !project.link && (
-          <p className="text-gray-500 italic">App móvil - Próximamente en Play Store</p>
+          <p className="text-gray-500 italic">{t('mobileAppStore')}</p>
         )}
       </div>
     </motion.div>

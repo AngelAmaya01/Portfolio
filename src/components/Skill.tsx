@@ -35,7 +35,7 @@ import { useLanguage } from "./LanguageToggle";
 
 const skills = [
   {
-    category: "Backend",
+    categoryKey: "backend",
     icon: <FaServer className="w-8 h-8" />,
     items: [
       { name: "C# - .NET", icon: <TbBrandCSharp  className="w-6 h-6" />, color: "text-purple-400" },
@@ -45,7 +45,7 @@ const skills = [
     ],
   },
   {
-    category: "Frontend",
+    categoryKey: "frontend",
     icon: <FaDesktop className="w-8 h-8" />,
     items: [
       { name: "HTML", icon: <SiHtml5 className="w-6 h-6" />, color: "text-orange-400" },
@@ -57,7 +57,7 @@ const skills = [
     ],
   },
   {
-    category: "Frameworks",
+    categoryKey: "frameworks",
     icon: <FaCode className="w-8 h-8" />,
     items: [
       { name: "React", icon: <SiReact className="w-6 h-6" />, color: "text-cyan-400" },
@@ -65,7 +65,7 @@ const skills = [
     ],
   },
   {
-    category: "Bases de datos",
+    categoryKey: "databases",
     icon: <CiDatabase  className="w-8 h-8" />,
     items: [
       { name: "SQL Server", icon: <DiMsqlServer className="w-6 h-6" />, color: "text-red-400" },
@@ -75,18 +75,18 @@ const skills = [
     ],
   },
   {
-    category: "Arquitecturas",
+    categoryKey: "architectures",
     icon: <FaLayerGroup className="w-8 h-8" />,
     items: [
-      { name: "Monolítica", icon: <FaServer className="w-6 h-6" />, color: "text-gray-400" },
-      { name: "Cliente-Servidor", icon: <FaDesktop className="w-6 h-6" />, color: "text-blue-400" },
-      { name: "Arquitectura en Capas", icon: <FaLayerGroup className="w-6 h-6" />, color: "text-purple-400" },
-      { name: "Serverless", icon: <FaCloud className="w-6 h-6" />, color: "text-cyan-400" },
-      { name: "SPA / PWA", icon: <FaMobile className="w-6 h-6" />, color: "text-green-400" },
+      { nameKey: "monolithic", icon: <FaServer className="w-6 h-6" />, color: "text-gray-400" },
+      { nameKey: "clientServer", icon: <FaDesktop className="w-6 h-6" />, color: "text-blue-400" },
+      { nameKey: "layered", icon: <FaLayerGroup className="w-6 h-6" />, color: "text-purple-400" },
+      { nameKey: "serverless", icon: <FaCloud className="w-6 h-6" />, color: "text-cyan-400" },
+      { nameKey: "spaPwa", icon: <FaMobile className="w-6 h-6" />, color: "text-green-400" },
     ],
   },
   {
-    category: "DevOps",
+    categoryKey: "devops",
     icon: <FaCloud className="w-8 h-8" />,
     items: [
       { name: "Git", icon: <SiGit className="w-6 h-6" />, color: "text-orange-400" },
@@ -138,7 +138,7 @@ export const Skills = () => {
                 {category.icon}
               </motion.div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-                {category.category}
+                {t(category.categoryKey)}
               </h3>
               <div className="grid grid-cols-1 gap-4">
                 {category.items.map((skill, index) => (
@@ -158,7 +158,7 @@ export const Skills = () => {
                       {skill.icon}
                     </div>
                     <span className="text-gray-900 dark:text-white font-medium text-sm group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
-                      {skill.name}
+                      {skill.nameKey ? t(skill.nameKey) : skill.name}
                     </span>
                   </motion.div>
                 ))}

@@ -5,17 +5,17 @@ import { useLanguage } from './LanguageToggle';
 
 const experiences = [
   {
-    title: 'Web Developer',
-    company: 'EMASAR',
+    titleKey: 'webDeveloper',
+    companyKey: 'emasar',
     period: '2024 - 2025',
-    description: 'Desarrollo y mantenimiento del sistema web AquaSystemWeb para la gestión de servicios de agua potable, incluyendo administración de usuarios, facturación y reportes.',
+    descriptionKey: 'webDevDesc',
     technologies: ['React', 'JavaScript', 'Tailwind CSS', 'MySQL']
   },
   {
-    title: 'Mobile App Developer',
-    company: 'EMASAR',
+    titleKey: 'mobileAppDeveloper',
+    companyKey: 'emasar',
     period: '2023 - 2025',
-    description: 'Desarrollo de AquaSystemApp, aplicación móvil complementaria que permite a los usuarios consultar su estado de cuenta y realizar pagos.',
+    descriptionKey: 'mobileDevDesc',
     technologies: ['React Native', 'TypeScript', 'Firebase']
   }
 ];
@@ -59,28 +59,25 @@ export const About = () => {
             className="space-y-6"
           >
             <div className="bg-white dark:bg-gray-900/50 backdrop-blur-lg rounded-2xl p-8 border border-gray-200 dark:border-gray-700 shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Información Personal</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('personalInfo')}</h3>
               
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <MapPin className="w-5 h-5 text-blue-500" />
-                  <span className="text-gray-700 dark:text-gray-300">Santa Rosa de Copán, Honduras</span>
+                  <span className="text-gray-700 dark:text-gray-300">{t('location')}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Calendar className="w-5 h-5 text-blue-500" />
-                  <span className="text-gray-700 dark:text-gray-300">1+ años de experiencia</span>
+                  <span className="text-gray-700 dark:text-gray-300">{t('experience')}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <GraduationCap className="w-5 h-5 text-blue-500" />
-                  <span className="text-gray-700 dark:text-gray-300">Ingeniería en Sistemas</span>
+                  <span className="text-gray-700 dark:text-gray-300">{t('degree')}</span>
                 </div>
               </div>
 
               <p className="text-gray-600 dark:text-gray-400 mt-6 leading-relaxed">
-                Soy un desarrollador apasionado por crear soluciones tecnológicas innovadoras. 
-                Me especializo en el desarrollo de aplicaciones web y móviles, con un enfoque en la 
-                experiencia del usuario y la eficiencia del código. Mi objetivo es transformar ideas 
-                complejas en aplicaciones funcionales y atractivas.
+                {t('aboutDescription')}
               </p>
             </div>
 
@@ -88,7 +85,7 @@ export const About = () => {
             <div className="bg-white dark:bg-gray-900/50 backdrop-blur-lg rounded-2xl p-8 border border-gray-200 dark:border-gray-700 shadow-lg">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                 <Award className="w-6 h-6 text-blue-500" />
-                Certificaciones
+                {t('certifications')}
               </h3>
               <div className="space-y-4">
                 {certifications.map((cert, index) => (
@@ -123,7 +120,7 @@ export const About = () => {
             className="space-y-6"
           >
             <div className="bg-white dark:bg-gray-900/50 backdrop-blur-lg rounded-2xl p-8 border border-gray-200 dark:border-gray-700 shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Experiencia Profesional</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">{t('professionalExperience')}</h3>
               
               <div className="relative">
                 {/* Timeline line */}
@@ -143,11 +140,11 @@ export const About = () => {
                       
                       <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 hover:bg-gray-100 dark:hover:bg-gray-800/70 transition-colors shadow-sm">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                          <h4 className="text-xl font-bold text-gray-900 dark:text-white">{exp.title}</h4>
+                          <h4 className="text-xl font-bold text-gray-900 dark:text-white">{t(exp.titleKey)}</h4>
                           <span className="text-blue-500 text-sm font-medium">{exp.period}</span>
                         </div>
-                        <p className="text-blue-600 dark:text-blue-400 font-medium mb-3">{exp.company}</p>
-                        <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">{exp.description}</p>
+                        <p className="text-blue-600 dark:text-blue-400 font-medium mb-3">{t(exp.companyKey)}</p>
+                        <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">{t(exp.descriptionKey)}</p>
                         
                         <div className="flex flex-wrap gap-2">
                           {exp.technologies.map((tech, techIndex) => (

@@ -26,7 +26,42 @@ const translations = {
     aboutMe: 'Sobre Mí',
     featuredProjects: 'Proyectos Destacados',
     skillsAndExperience: 'Habilidades y Experiencia',
-    contactMe: 'Contáctame'
+    contactMe: 'Contáctame',
+    // About section
+    personalInfo: 'Información Personal',
+    professionalExperience: 'Experiencia Profesional',
+    certifications: 'Certificaciones',
+    location: 'Santa Rosa de Copán, Honduras',
+    experience: '1+ años de experiencia',
+    degree: 'Ingeniería en Sistemas',
+    aboutDescription: 'Soy un desarrollador apasionado por crear soluciones tecnológicas innovadoras. Me especializo en el desarrollo de aplicaciones web y móviles, con un enfoque en la experiencia del usuario y la eficiencia del código. Mi objetivo es transformar ideas complejas en aplicaciones funcionales y atractivas.',
+    // Projects
+    aquaSystemWebDesc: 'Sistema web completo para la gestión de servicios de agua potable. Incluye administración de usuarios, facturación, reportes y control de pagos. Desarrollado con React, TypeScript y MySQL.',
+    aquaSystemAppDesc: 'Aplicación móvil complementaria del sistema web, permitiendo a los usuarios consultar su estado de cuenta, realizar pagos y recibir notificaciones. Desarrollada con React Native.',
+    viewProject: 'Ver proyecto',
+    mobileAppStore: 'App móvil - Próximamente en Play Store',
+    statusLive: '🟢 En vivo',
+    statusCompleted: '✅ Completado',
+    statusDevelopment: '🚧 En desarrollo',
+    // Experience
+    webDeveloper: 'Desarrollador Web',
+    mobileAppDeveloper: 'Desarrollador de Apps Móviles',
+    emasar: 'EMASAR',
+    webDevDesc: 'Desarrollo y mantenimiento del sistema web AquaSystemWeb para la gestión de servicios de agua potable, incluyendo administración de usuarios, facturación y reportes.',
+    mobileDevDesc: 'Desarrollo de AquaSystemApp, aplicación móvil complementaria que permite a los usuarios consultar su estado de cuenta y realizar pagos.',
+    // Skills categories
+    backend: 'Backend',
+    frontend: 'Frontend',
+    frameworks: 'Frameworks',
+    databases: 'Bases de datos',
+    architectures: 'Arquitecturas',
+    devops: 'DevOps',
+    // Architecture types
+    monolithic: 'Monolítica',
+    clientServer: 'Cliente-Servidor',
+    layered: 'Arquitectura en Capas',
+    serverless: 'Serverless',
+    spaPwa: 'SPA / PWA'
   },
   en: {
     home: 'Home',
@@ -44,7 +79,42 @@ const translations = {
     aboutMe: 'About Me',
     featuredProjects: 'Featured Projects',
     skillsAndExperience: 'Skills and Experience',
-    contactMe: 'Contact Me'
+    contactMe: 'Contact Me',
+    // About section
+    personalInfo: 'Personal Information',
+    professionalExperience: 'Professional Experience',
+    certifications: 'Certifications',
+    location: 'Santa Rosa de Copán, Honduras',
+    experience: '1+ years of experience',
+    degree: 'Systems Engineering',
+    aboutDescription: 'I am a developer passionate about creating innovative technological solutions. I specialize in web and mobile application development, with a focus on user experience and code efficiency. My goal is to transform complex ideas into functional and attractive applications.',
+    // Projects
+    aquaSystemWebDesc: 'Complete web system for water service management. Includes user administration, billing, reports and payment control. Developed with React, TypeScript and MySQL.',
+    aquaSystemAppDesc: 'Complementary mobile application to the web system, allowing users to check their account status, make payments and receive notifications. Developed with React Native.',
+    viewProject: 'View project',
+    mobileAppStore: 'Mobile App - Coming soon to Play Store',
+    statusLive: '🟢 Live',
+    statusCompleted: '✅ Completed',
+    statusDevelopment: '🚧 In development',
+    // Experience
+    webDeveloper: 'Web Developer',
+    mobileAppDeveloper: 'Mobile App Developer',
+    emasar: 'EMASAR',
+    webDevDesc: 'Development and maintenance of the AquaSystemWeb web system for water service management, including user administration, billing and reports.',
+    mobileDevDesc: 'Development of AquaSystemApp, a complementary mobile application that allows users to check their account status and make payments.',
+    // Skills categories
+    backend: 'Backend',
+    frontend: 'Frontend',
+    frameworks: 'Frameworks',
+    databases: 'Databases',
+    architectures: 'Architectures',
+    devops: 'DevOps',
+    // Architecture types
+    monolithic: 'Monolithic',
+    clientServer: 'Client-Server',
+    layered: 'Layered Architecture',
+    serverless: 'Serverless',
+    spaPwa: 'SPA / PWA'
   }
 };
 
