@@ -31,19 +31,17 @@ export const Navigation = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      const offsetTop = element.offsetTop - 80; // Ajuste para el header fijo
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
+      const y = element.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
     setIsOpen(false);
   };
 
+
   const downloadCV = () => {
     const a = document.createElement("a");
-    a.href = "/CV - Angel Amaya.pdf"; 
-    a.download = "Angel_Amaya_CV.pdf"; 
+    a.href = "/CV - Angel Amaya.pdf";
+    a.download = "Angel_Amaya_CV.pdf";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -61,11 +59,10 @@ export const Navigation = () => {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
             ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700/50 shadow-lg'
             : 'bg-transparent'
-        }`}
+          }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
@@ -140,10 +137,11 @@ export const Navigation = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-700/50"
+              initial={{ opacity: 0, scaleY: 0 }}
+              animate={{ opacity: 1, scaleY: 1 }}
+              exit={{ opacity: 0, scaleY: 0 }}
+              transition={{ duration: 0.3 }}
+              className="origin-top md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-700/50"
             >
               <div className="container mx-auto px-4 py-4 space-y-4">
                 {navItems.map((item) => (

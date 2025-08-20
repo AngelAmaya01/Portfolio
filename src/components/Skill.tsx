@@ -31,6 +31,7 @@ import {
 import { DiMsqlServer } from "react-icons/di";
 import { TbBrandCSharp } from "react-icons/tb";
 import { useLanguage } from "./LanguageToggle";
+import { CiDatabase } from "react-icons/ci";
 
 const skills = [
   {
