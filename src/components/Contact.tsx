@@ -8,7 +8,7 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { useLanguage } from "./LanguageToggle";
 
 interface FormData {
