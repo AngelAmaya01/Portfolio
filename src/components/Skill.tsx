@@ -32,8 +32,22 @@ import { DiMsqlServer } from "react-icons/di";
 import { TbBrandCSharp } from "react-icons/tb";
 import { useLanguage } from "./LanguageToggle";
 import { CiDatabase } from "react-icons/ci";
+import { JSX } from "react";
 
-const skills = [
+type SkillItem = {
+  name?: string;       // opcional
+  nameKey?: string;    // opcional
+  icon: JSX.Element;
+  color: string;
+};
+
+type SkillCategory = {
+  categoryKey: string;
+  icon: JSX.Element;
+  items: SkillItem[];
+};
+
+const skills: SkillCategory[] = [
   {
     categoryKey: "backend",
     icon: <FaServer className="w-8 h-8" />,
@@ -123,7 +137,7 @@ export const Skills = () => {
         <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {skills.map((category, categoryIndex) => (
             <motion.div
-              key={category.category}
+              key={category.categoryKey}
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
@@ -143,7 +157,7 @@ export const Skills = () => {
               <div className="grid grid-cols-1 gap-4">
                 {category.items.map((skill, index) => (
                   <motion.div
-                    key={skill.name}
+                    key={skill.nameKey ?? skill.name ?? index}
                     initial={{ opacity: 0, x: -20 }}
                     animate={
                       inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
