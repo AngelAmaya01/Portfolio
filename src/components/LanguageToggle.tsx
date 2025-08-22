@@ -165,10 +165,13 @@ export const LanguageToggle = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={toggleLanguage}
-      className="fixed bottom-8 left-8 z-40 p-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center gap-2"
+      className="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-40 p-2 md:p-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center gap-1 md:gap-2 touch-manipulation"
+      aria-label={`Switch to ${language === 'es' ? 'English' : 'Spanish'}`}
     >
-      <Globe className="w-5 h-5" />
-      <span className="text-sm font-medium">{language.toUpperCase()}</span>
+      <Globe className="w-4 h-4 md:w-5 md:h-5" />
+      <span className="text-xs md:text-sm font-medium hidden sm:block">
+        {language.toUpperCase()}
+      </span>
     </motion.button>
   );
 };

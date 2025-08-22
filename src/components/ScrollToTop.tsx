@@ -35,9 +35,10 @@ export const ScrollToTop = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 p-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
+          className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-40 p-2 md:p-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full shadow-lg hover:shadow-blue-500/25 transition-all duration-300 touch-manipulation"
+          aria-label="Scroll to top"
         >
-          <ChevronUp className="w-6 h-6" />
+          <ChevronUp className="w-5 h-5 md:w-6 md:h-6" />
         </motion.button>
       )}
     </AnimatePresence>

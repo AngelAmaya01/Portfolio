@@ -13,8 +13,8 @@ function App() {
   return (
     <LanguageProvider>
       <div className="bg-white dark:bg-gray-900 min-h-screen relative transition-colors duration-300">
+        {/* <CustomCursor /> */}
         <ParticleBackground />
-        <CustomCursor />
         <Navigation />
         
         <main>
