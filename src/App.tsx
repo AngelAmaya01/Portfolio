@@ -1,6 +1,6 @@
 import { Navigation } from "./components/Navigation";
 import { ParticleBackground } from "./components/ParticleBackground";
-import { CustomCursor } from "./components/CustomCursor";
+// import { CustomCursor } from "./components/CustomCursor";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { LanguageToggle, LanguageProvider } from "./components/LanguageToggle";
 import { Hero } from "./components/Hero";
