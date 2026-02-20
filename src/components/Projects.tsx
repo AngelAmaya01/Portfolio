@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ExternalLink, Smartphone } from "lucide-react";
+import { ExternalLink, Smartphone, ShoppingCart } from "lucide-react";
 import { ReactElement } from "react";
 import { useLanguage } from "./LanguageToggle";
 
@@ -12,16 +12,27 @@ interface Project {
   tags: string[];
   link?: string;
   status: "live" | "development" | "completed";
+  icon?: ReactElement;
 }
 
 // Lista de proyectos
 const projects: Project[] = [
   {
+    title: "VIStudio — E-commerce Full-Stack",
+    descriptionKey: "viStudioDesc",
+    image:
+      "https://www.vistudiohn.com/logo-vistudio.png",
+    tags: ["React 19", "Node.js", "Express.js", "MySQL", "Socket.io", "JWT", "Cloudinary", "Tailwind CSS"],
+    link: "https://www.vistudiohn.com/",
+    status: "live",
+    icon: <ShoppingCart className="w-6 h-6 text-white" />,
+  },
+  {
     title: "AquaSystemWeb",
     descriptionKey: "aquaSystemWebDesc",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
-    tags: ["React", "JavaScript", "Tailwind CSS"],
+    tags: ["React", "JavaScript", "Tailwind CSS", "MySQL"],
     link: "https://admin.emasar.org/",
     status: "live",
   },
@@ -32,6 +43,7 @@ const projects: Project[] = [
       "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80",
     tags: ["React Native", "TypeScript", "Tailwind CSS", "Firebase"],
     status: "completed",
+    icon: <Smartphone className="w-6 h-6 text-white" />,
   },
 ];
 
@@ -53,7 +65,7 @@ export const Projects = (): ReactElement => {
         >
           {t('featuredProjects')}
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}
@@ -107,9 +119,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.5, delay: index * 0.2 }}
+      transition={{ duration: 0.5, delay: index * 0.15 }}
       whileHover={{ y: -10 }}
-      className="bg-white dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-500/30 transition-all duration-300 shadow-lg hover:shadow-blue-500/10 group"
+      className="bg-white dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-500/30 transition-all duration-300 shadow-lg hover:shadow-blue-500/10 group flex flex-col"
     >
       <div className="relative overflow-hidden">
         <img
@@ -130,9 +142,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
               <ExternalLink className="w-6 h-6 text-white" />
             </motion.a>
           )}
-          {project.status === "completed" && !project.link && (
+          {project.icon && !project.link && (
             <div className="p-3 bg-white/10 rounded-full backdrop-blur-sm">
-              <Smartphone className="w-6 h-6 text-white" />
+              {project.icon}
             </div>
           )}
         </div>
@@ -140,16 +152,16 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
           {getStatusBadge(project.status)}
         </div>
       </div>
-      <div className="p-8">
-        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-500 transition-colors">
+      <div className="p-6 flex flex-col flex-1">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-500 transition-colors">
           {project.title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">{t(project.descriptionKey)}</p>
-        <div className="flex flex-wrap gap-2 mb-4">
+        <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed text-sm flex-1">{t(project.descriptionKey)}</p>
+        <div className="flex flex-wrap gap-1.5 mb-4">
           {project.tags.map((tag, tagIndex) => (
             <span
               key={tagIndex}
-              className="px-3 py-1 bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full text-sm border border-blue-200 dark:border-blue-500/20 hover:bg-blue-200 dark:hover:bg-blue-500/20 transition-colors"
+              className="px-2 py-0.5 bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full text-xs border border-blue-200 dark:border-blue-500/20 hover:bg-blue-200 dark:hover:bg-blue-500/20 transition-colors"
             >
               {tag}
             </span>
@@ -160,13 +172,13 @@ const ProjectCard = ({ project, index }: ProjectCardProps): ReactElement => {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+            className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium text-sm"
           >
             {t('viewProject')} <ExternalLink className="w-4 h-4" />
           </a>
         )}
         {project.status === "completed" && !project.link && (
-          <p className="text-gray-500 italic">{t('mobileAppStore')}</p>
+          <p className="text-gray-500 italic text-sm">{t('mobileAppStore')}</p>
         )}
       </div>
     </motion.div>

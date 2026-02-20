@@ -19,6 +19,11 @@ import {
   SiVercel,
   SiFirebase,
   SiCloudflare,
+  SiExpress,
+  SiSocketdotio,
+  SiPhp,
+  SiLaravel,
+  SiCloudinary,
 } from "react-icons/si";
 import {
   FaServer,
@@ -26,7 +31,10 @@ import {
   FaCloud,
   FaMobile,
   FaDesktop,
-  FaCode
+  FaCode,
+  FaNetworkWired,
+  FaShieldAlt,
+  FaDatabase,
 } from "react-icons/fa";
 import { DiMsqlServer } from "react-icons/di";
 import { TbBrandCSharp } from "react-icons/tb";
@@ -35,8 +43,8 @@ import { CiDatabase } from "react-icons/ci";
 import { JSX } from "react";
 
 type SkillItem = {
-  name?: string;       // opcional
-  nameKey?: string;    // opcional
+  name?: string;
+  nameKey?: string;
   icon: JSX.Element;
   color: string;
 };
@@ -52,20 +60,22 @@ const skills: SkillCategory[] = [
     categoryKey: "backend",
     icon: <FaServer className="w-8 h-8" />,
     items: [
-      { name: "C# - .NET", icon: <TbBrandCSharp  className="w-6 h-6" />, color: "text-purple-400" },
-      { name: "Java", icon: <SiJavascript className="w-6 h-6" />, color: "text-red-400" },
-      { name: "JavaScript/TypeScript - Node.js", icon: <SiNodedotjs className="w-6 h-6" />, color: "text-green-400" },
+      { name: "C# - .NET", icon: <TbBrandCSharp className="w-6 h-6" />, color: "text-purple-400" },
+      { name: "Java", icon: <FaCode className="w-6 h-6" />, color: "text-red-400" },
+      { name: "Node.js / JavaScript", icon: <SiNodedotjs className="w-6 h-6" />, color: "text-green-400" },
+      { name: "TypeScript", icon: <SiTypescript className="w-6 h-6" />, color: "text-blue-400" },
       { name: "Python", icon: <SiPython className="w-6 h-6" />, color: "text-yellow-400" },
+      { name: "PHP / Laravel", icon: <SiLaravel className="w-6 h-6" />, color: "text-red-500" },
     ],
   },
   {
     categoryKey: "frontend",
     icon: <FaDesktop className="w-8 h-8" />,
     items: [
-      { name: "HTML", icon: <SiHtml5 className="w-6 h-6" />, color: "text-orange-400" },
-      { name: "CSS", icon: <SiCss3 className="w-6 h-6" />, color: "text-blue-400" },
+      { name: "HTML5", icon: <SiHtml5 className="w-6 h-6" />, color: "text-orange-400" },
+      // { name: "CSS3", icon: <SiCss3 className="w-6 h-6" />, color: "text-blue-400" },
       { name: "JavaScript", icon: <SiJavascript className="w-6 h-6" />, color: "text-yellow-400" },
-      { name: "TypeScript", icon: <SiTypescript className="w-6 h-6" />, color: "text-blue-400" },
+      { name: "TypeScript", icon: <SiTypescript className="w-6 h-6" />, color: "text-blue-500" },
       { name: "Tailwind CSS", icon: <SiTailwindcss className="w-6 h-6" />, color: "text-cyan-400" },
       { name: "Bootstrap", icon: <SiBootstrap className="w-6 h-6" />, color: "text-purple-400" },
     ],
@@ -74,18 +84,47 @@ const skills: SkillCategory[] = [
     categoryKey: "frameworks",
     icon: <FaCode className="w-8 h-8" />,
     items: [
-      { name: "React", icon: <SiReact className="w-6 h-6" />, color: "text-cyan-400" },
+      { name: "React / React 19", icon: <SiReact className="w-6 h-6" />, color: "text-cyan-400" },
       { name: "React Native", icon: <FaMobile className="w-6 h-6" />, color: "text-cyan-400" },
+      { name: "Express.js", icon: <SiExpress className="w-6 h-6" />, color: "text-gray-400" },
+      { name: "Laravel", icon: <SiLaravel className="w-6 h-6" />, color: "text-red-400" },
+      // { name: "Socket.io", icon: <SiSocketdotio className="w-6 h-6" />, color: "text-white" },
     ],
   },
   {
     categoryKey: "databases",
-    icon: <CiDatabase  className="w-8 h-8" />,
+    icon: <CiDatabase className="w-8 h-8" />,
     items: [
       { name: "SQL Server", icon: <DiMsqlServer className="w-6 h-6" />, color: "text-red-400" },
       { name: "MySQL", icon: <SiMysql className="w-6 h-6" />, color: "text-blue-400" },
-      { name: "MongoDB", icon: <SiMongodb className="w-6 h-6" />, color: "text-green-400" },
-      { name: "PostgreSQL", icon: <SiPostgresql className="w-6 h-6" />, color: "text-blue-400" },
+      // { name: "MongoDB", icon: <SiMongodb className="w-6 h-6" />, color: "text-green-400" },
+      // { name: "PostgreSQL", icon: <SiPostgresql className="w-6 h-6" />, color: "text-blue-400" },
+    ],
+  },
+  {
+    categoryKey: "devops",
+    icon: <FaCloud className="w-8 h-8" />,
+    items: [
+      { name: "Git", icon: <SiGit className="w-6 h-6" />, color: "text-orange-400" },
+      { name: "GitHub", icon: <SiGithub className="w-6 h-6" />, color: "text-gray-900 dark:text-white" },
+      // { name: "Docker", icon: <SiDocker className="w-6 h-6" />, color: "text-blue-400" },
+      { name: "Cloudflare", icon: <SiCloudflare className="w-6 h-6" />, color: "text-orange-400" },
+      { name: "Vercel", icon: <SiVercel className="w-6 h-6" />, color: "text-gray-900 dark:text-white" },
+      { name: "Firebase", icon: <SiFirebase className="w-6 h-6" />, color: "text-yellow-400" },
+      { name: "Cloudinary", icon: <SiCloudinary className="w-6 h-6" />, color: "text-blue-500" },
+      // { name: "Claro Cloud", icon: <FaCloud className="w-6 h-6" />, color: "text-cyan-500" },
+    ],
+  },
+  {
+    categoryKey: "infrastructure",
+    icon: <FaNetworkWired className="w-8 h-8" />,
+    items: [
+      // { name: "Redes & LAN/WAN", icon: <FaNetworkWired className="w-6 h-6" />, color: "text-green-400" },
+      // { name: "Videovigilancia CCTV", icon: <FaShieldAlt className="w-6 h-6" />, color: "text-blue-400" },
+      { name: "SSL / TLS", icon: <FaShieldAlt className="w-6 h-6" />, color: "text-green-500" },
+      { name: "VPN (Tailscale)", icon: <FaNetworkWired className="w-6 h-6" />, color: "text-purple-400" },
+      // { name: "Administración Servidores", icon: <FaServer className="w-6 h-6" />, color: "text-gray-400" },
+      { name: "phpMyAdmin", icon: <FaDatabase className="w-6 h-6" />, color: "text-orange-400" },
     ],
   },
   {
@@ -95,20 +134,8 @@ const skills: SkillCategory[] = [
       { nameKey: "monolithic", icon: <FaServer className="w-6 h-6" />, color: "text-gray-400" },
       { nameKey: "clientServer", icon: <FaDesktop className="w-6 h-6" />, color: "text-blue-400" },
       { nameKey: "layered", icon: <FaLayerGroup className="w-6 h-6" />, color: "text-purple-400" },
-      { nameKey: "serverless", icon: <FaCloud className="w-6 h-6" />, color: "text-cyan-400" },
+      // { nameKey: "serverless", icon: <FaCloud className="w-6 h-6" />, color: "text-cyan-400" },
       { nameKey: "spaPwa", icon: <FaMobile className="w-6 h-6" />, color: "text-green-400" },
-    ],
-  },
-  {
-    categoryKey: "devops",
-    icon: <FaCloud className="w-8 h-8" />,
-    items: [
-      { name: "Git", icon: <SiGit className="w-6 h-6" />, color: "text-orange-400" },
-      { name: "GitHub", icon: <SiGithub className="w-6 h-6" />, color: "text-gray-900 dark:text-white" },
-      { name: "Docker", icon: <SiDocker className="w-6 h-6" />, color: "text-blue-400" },
-      { name: "Cloudflare", icon: <SiCloudflare className="w-6 h-6" />, color: "text-orange-400" },
-      { name: "Vercel", icon: <SiVercel className="w-6 h-6" />, color: "text-gray-900 dark:text-white" },
-      { name: "Firebase", icon: <SiFirebase className="w-6 h-6" />, color: "text-yellow-400" },
     ],
   },
 ];
@@ -134,7 +161,7 @@ export const Skills = () => {
         >
           {t('skillsAndExperience')}
         </motion.h2>
-        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {skills.map((category, categoryIndex) => (
             <motion.div
               key={category.categoryKey}
@@ -154,7 +181,7 @@ export const Skills = () => {
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">
                 {t(category.categoryKey)}
               </h3>
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-3">
                 {category.items.map((skill, index) => (
                   <motion.div
                     key={skill.nameKey ?? skill.name ?? index}

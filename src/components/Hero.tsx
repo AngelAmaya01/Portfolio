@@ -98,6 +98,10 @@ export const Hero = () => {
               <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
               <span className="text-sm sm:text-base">{t('backendDev')}</span>
             </div>
+            <div className="flex items-center gap-2">
+              <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
+              <span className="text-sm sm:text-base">{t('tiManagement')}</span>
+            </div>
           </div>
 
           {/* Descripción */}
