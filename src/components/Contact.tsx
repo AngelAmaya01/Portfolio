@@ -14,6 +14,7 @@ import { useLanguage } from "./LanguageToggle";
 interface FormData {
   name: string;
   email: string;
+  subject: string;
   message: string;
 }
 
@@ -27,6 +28,7 @@ export const Contact = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
   const [status, setStatus] = useState<Status>({
@@ -37,11 +39,7 @@ export const Contact = () => {
   const [loading, setLoading] = useState(false);
   const { t } = useLanguage();
 
-  // Initialize EmailJS
-  useEffect(() => {
-    // No need to call init() with the newer version of emailjs-com
-    // The initialization happens when sending the email
-  }, []);
+  useEffect(() => {}, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -69,12 +67,11 @@ export const Contact = () => {
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
+        subject: formData.subject,
         to_name: "Angel Amaya",
         message: formData.message,
         reply_to: formData.email,
       };
-
-      console.log("Sending email with params:", templateParams);
 
       const response = await emailjs.send(
         serviceId,
@@ -87,25 +84,24 @@ export const Contact = () => {
       setStatus({
         submitted: true,
         success: true,
-        message: "Your message has been sent successfully!",
+        message: t('successMessage'),
       });
 
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
       console.error("Error sending email:", error);
       setStatus({
         submitted: true,
         success: false,
-        message: "Failed to send message. Please try again later.",
+        message: t('errorMessage'),
       });
     } finally {
       setLoading(false);
     }
   };
+
+  const inputClass =
+    "w-full px-4 py-3 bg-gray-50 dark:bg-gray-800/50 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-gray-200 dark:border-blue-500/10 focus:border-blue-500/30 transition-all backdrop-blur-sm placeholder-gray-400 dark:placeholder-gray-500";
 
   return (
     <section className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
@@ -120,58 +116,60 @@ export const Contact = () => {
           {t('contactMe')}
         </motion.h2>
         <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+          {/* Contact info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="space-y-8"
           >
-            <div className="flex items-center space-x-4 group">
-              <div className="p-4 bg-blue-100 dark:bg-blue-500/10 rounded-xl group-hover:bg-blue-200 dark:group-hover:bg-blue-500/20 transition-colors duration-300 border border-blue-200 dark:border-blue-500/20">
-                <Mail className="w-6 h-6 text-blue-500" />
+            {[
+              {
+                icon: Mail,
+                label: 'Email',
+                value: 'angelnataren16@gmail.com',
+                href: 'mailto:angelnataren16@gmail.com',
+              },
+              {
+                icon: Phone,
+                label: 'Phone',
+                value: '+504 9828-8917',
+                href: 'tel:+50498288917',
+              },
+              {
+                icon: MapPin,
+                label: 'Location',
+                value: 'Santa Rosa de Copán, Honduras',
+                href: undefined,
+              },
+            ].map(({ icon: Icon, label, value, href }) => (
+              <div key={label} className="flex items-center space-x-4 group">
+                <div className="p-4 bg-blue-100 dark:bg-blue-500/10 rounded-xl group-hover:bg-blue-200 dark:group-hover:bg-blue-500/20 transition-colors duration-300 border border-blue-200 dark:border-blue-500/20">
+                  <Icon className="w-6 h-6 text-blue-500" />
+                </div>
+                <div>
+                  <h3 className="text-gray-900 dark:text-white font-medium mb-1">{label}</h3>
+                  {href ? (
+                    <a
+                      href={href}
+                      className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors"
+                    >
+                      {value}
+                    </a>
+                  ) : (
+                    <p className="text-gray-600 dark:text-gray-400">{value}</p>
+                  )}
+                </div>
               </div>
-              <div>
-                <h3 className="text-gray-900 dark:text-white font-medium mb-1">Email</h3>
-                <a
-                  href="mailto:angelnataren16@gmail.com"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors"
-                >
-                  angelnataren16@gmail.com
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-4 group">
-              <div className="p-4 bg-blue-100 dark:bg-blue-500/10 rounded-xl group-hover:bg-blue-200 dark:group-hover:bg-blue-500/20 transition-colors duration-300 border border-blue-200 dark:border-blue-500/20">
-                <Phone className="w-6 h-6 text-blue-500" />
-              </div>
-              <div>
-                <h3 className="text-gray-900 dark:text-white font-medium mb-1">Phone</h3>
-                <a
-                  href="tel:+50498288917"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors"
-                >
-                  +504 98288917
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-4 group">
-              <div className="p-4 bg-blue-100 dark:bg-blue-500/10 rounded-xl group-hover:bg-blue-200 dark:group-hover:bg-blue-500/20 transition-colors duration-300 border border-blue-200 dark:border-blue-500/20">
-                <MapPin className="w-6 h-6 text-blue-500" />
-              </div>
-              <div>
-                <h3 className="text-gray-900 dark:text-white font-medium mb-1">Location</h3>
-                <p className="text-gray-600 dark:text-gray-400">Santa Rosa de Copán, Honduras</p>
-              </div>
-            </div>
+            ))}
           </motion.div>
 
+          {/* Form */}
           <motion.form
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="space-y-6"
+            className="space-y-5"
             onSubmit={handleSubmit}
           >
             {status.submitted ? (
@@ -192,10 +190,12 @@ export const Contact = () => {
                   )}
                   <h3
                     className={`font-medium text-xl ${
-                      status.success ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
+                      status.success
+                        ? "text-green-600 dark:text-green-400"
+                        : "text-red-600 dark:text-red-400"
                     }`}
                   >
-                    {status.success ? "Success!" : "Error!"}
+                    {status.success ? t('successTitle') : t('errorTitle')}
                   </h3>
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">{status.message}</p>
@@ -206,53 +206,58 @@ export const Contact = () => {
                   }
                   className="px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white rounded-lg transition-colors"
                 >
-                  Send another message
+                  {t('sendAnother')}
                 </button>
               </motion.div>
             ) : (
               <>
-                <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Your Name"
+                    placeholder={t('yourName')}
                     required
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800/50 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-gray-200 dark:border-blue-500/10 focus:border-blue-500/30 transition-all backdrop-blur-sm"
+                    className={inputClass}
                   />
-                </div>
-                <div>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Your Email"
+                    placeholder={t('yourEmail')}
                     required
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800/50 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-gray-200 dark:border-blue-500/10 focus:border-blue-500/30 transition-all backdrop-blur-sm"
+                    className={inputClass}
                   />
                 </div>
-                <div>
-                  <textarea
-                    rows={4}
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Your Message"
-                    required
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800/50 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-gray-200 dark:border-blue-500/10 focus:border-blue-500/30 transition-all backdrop-blur-sm resize-none"
-                  />
-                </div>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder={t('yourSubject')}
+                  required
+                  className={inputClass}
+                />
+                <textarea
+                  rows={5}
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder={t('yourMessage')}
+                  required
+                  className={`${inputClass} resize-none`}
+                />
                 <motion.button
                   type="submit"
                   disabled={loading}
                   whileHover={{ scale: loading ? 1 : 1.02 }}
                   whileTap={{ scale: loading ? 1 : 0.98 }}
-                  className={`w-full py-4 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 group ${
+                  className={`w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 group ${
                     loading
                       ? "opacity-70 cursor-not-allowed"
-                      : "hover:from-blue-500 hover:to-blue-300"
+                      : "hover:from-blue-500 hover:to-purple-500 hover:shadow-lg hover:shadow-blue-500/25"
                   }`}
                 >
                   {loading ? (
@@ -270,18 +275,18 @@ export const Contact = () => {
                           r="10"
                           stroke="currentColor"
                           strokeWidth="4"
-                        ></circle>
+                        />
                         <path
                           className="opacity-75"
                           fill="currentColor"
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
+                        />
                       </svg>
-                      Sending...
+                      {t('sending')}
                     </>
                   ) : (
                     <>
-                      Send Message
+                      {t('sendMessage')}
                       <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </>
                   )}

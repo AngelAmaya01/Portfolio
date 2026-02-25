@@ -132,7 +132,7 @@ export const About = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Briefcase className="w-5 h-5 text-blue-500 shrink-0" />
-                  <span className="text-gray-700 dark:text-gray-300">Jefe Área TI @ CREDIFAC</span>
+                  <span className="text-gray-700 dark:text-gray-300">Desarrollador de sistemas @ CREDIFAC</span>
                 </div>
               </div>
 

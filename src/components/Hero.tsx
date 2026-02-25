@@ -3,6 +3,7 @@ import {
   ChevronDown,
   Code2,
   Cpu,
+  Server,
   Github,
   Globe,
   Linkedin,
@@ -11,10 +12,19 @@ import {
 import { useLanguage } from "./LanguageToggle";
 
 // ** Animaciones y constantes fuera del componente para optimizar el rendimiento **
-// Estas constantes no necesitan redefinirse en cada render.
 const textVariants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+};
+
+const containerVariants = {
+  initial: {},
+  animate: { transition: { staggerChildren: 0.08 } },
+};
+
+const letterVariants = {
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 };
 
 const iconVariants = {
@@ -77,11 +87,23 @@ export const Hero = () => {
           <div className="relative">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
               {t('hello')}{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-blue-300 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300 text-transparent bg-clip-text">
                 Angel Amaya
               </span>
             </h1>
-            <p className="text-xl sm:text-2xl mb-6 text-blue-200">{t('fullStackDev')}</p>
+            {/* Subtítulo con efecto typewriter letra por letra */}
+            <motion.p
+              className="text-xl sm:text-2xl mb-6 text-blue-200 flex flex-wrap justify-center gap-0"
+              variants={containerVariants}
+              initial="initial"
+              animate="animate"
+            >
+              {t('fullStackDev').split('').map((char, i) => (
+                <motion.span key={i} variants={letterVariants}>
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
+            </motion.p>
           </div>
 
           {/* Iconos de habilidades */}
@@ -99,7 +121,7 @@ export const Hero = () => {
               <span className="text-sm sm:text-base">{t('backendDev')}</span>
             </div>
             <div className="flex items-center gap-2">
-              <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
+              <Server className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
               <span className="text-sm sm:text-base">{t('tiManagement')}</span>
             </div>
           </div>

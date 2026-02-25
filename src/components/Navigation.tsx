@@ -84,7 +84,7 @@ export const Navigation = () => {
               className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white cursor-pointer"
               onClick={() => scrollToSection('#home')}
             >
-              Angel<span className="text-blue-500">A</span>
+              Angel<span className="bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">A</span>
             </motion.div>
 
             {/* Desktop Navigation */}

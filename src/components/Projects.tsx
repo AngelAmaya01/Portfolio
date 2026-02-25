@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ExternalLink, Smartphone, ShoppingCart } from "lucide-react";
+import { ExternalLink, Smartphone, ShoppingCart, Github } from "lucide-react";
 import { ReactElement } from "react";
 import { useLanguage } from "./LanguageToggle";
 
@@ -70,6 +70,26 @@ export const Projects = (): ReactElement => {
             <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
+        {/* Link a GitHub */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex justify-center mt-12"
+        >
+          <motion.a
+            href="https://github.com/AngelAmaya01"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-3 px-6 py-3 bg-gray-900 dark:bg-gray-800 text-white rounded-xl border border-gray-700 hover:border-blue-500/50 hover:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/10 font-medium"
+          >
+            <Github className="w-5 h-5" />
+            {t('viewAllProjects')}
+            <ExternalLink className="w-4 h-4 opacity-70" />
+          </motion.a>
+        </motion.div>
       </div>
     </motion.section>
   );
